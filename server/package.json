@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
   "dependencies": {
     "apollo-server": "^2.9.7",
-    "mongoose": "^5.7.7"
+    "mongoose": "^5.7.7",
+    "nodemon": "^1.19.4"
   }
 }
