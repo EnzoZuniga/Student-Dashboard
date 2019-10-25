@@ -6,26 +6,26 @@ const typeDefs = gql`
     lastname: String
     firstname: String
     email: String
-    skills: [String]
+    skills: [Skill]
     role: String
     createdAt: String
   }
 
   type Skill {
-    _id: ID!
     skill: String
+    rating: String
   }
 
   input UserInput {
     lastname: String
     firstname: String
     email: String
-    skills: [String]
+    skills: [SkillInput]
     role: String
   }
-
   input SkillInput {
-    skill: [String]
+    skill: String
+    rating: String
   }
 
   type Query {

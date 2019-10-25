@@ -16,7 +16,8 @@ const userSchema = new mongoose.Schema(
     },
     skills: {
       type: Array,
-      required: false
+      required: false,
+      default: [{ skill: "test", rating: "A" }]
     },
     role: {
       type: String,

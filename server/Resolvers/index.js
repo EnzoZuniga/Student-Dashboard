@@ -30,8 +30,7 @@ exports.resolvers = {
       ctx
     ) => {
       try {
-        const findedUser = User.findOne({ email });
-        console.log(findedUser);
+        const findedUser = await User.findOne({ email });
         if (findedUser) {
           throw new Error("User already exist");
         }
@@ -44,7 +43,6 @@ exports.resolvers = {
         });
         return user;
       } catch (error) {
-        console.error("Erroooooooooooooooor", error);
         return new ApolloError(error.message, 404);
       }
     }
