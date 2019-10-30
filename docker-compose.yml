@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  back:
+    image: "node"
+    working_dir: /app
+    command: bash -c "yarn && yarn dev"
+    ports:
+    - "4000:4000"
+    volumes:
+      - ./server:/app 
+  front:
+    image: "node"
+    working_dir: /app
+    command: bash -c "yarn && yarn start"
+    ports:
+    - "3000:3000"
+    volumes:
+      - ./client:/app 
