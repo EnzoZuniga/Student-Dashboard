@@ -14,14 +14,25 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: false
     },
-    skills: {
-      type: Array,
-      required: false,
-      default: [{ skill: "test", rating: "A" }]
-    },
+    skills: [
+      {
+        skill: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Skill'
+        },
+        rating: {
+          type: String,
+          enum: ['A', 'B', 'C', 'D', 'E', 'F']
+        }
+      }
+    ],
     role: {
-      type: String,
-      required: false
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Role",
+    },
+    classroom: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Classroom",
     }
   },
   { timestamps: true }
