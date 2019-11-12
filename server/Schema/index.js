@@ -6,14 +6,57 @@ const typeDefs = gql`
     lastname: String
     firstname: String
     email: String
-    skills: [Skill]
-    role: String
+    skills: [RatedSkill]
+    role: Role
+    classroom: Classroom
+    job: String
+    description: String
     createdAt: String
   }
 
-  type Skill {
-    skill: String
+  type RatedSkill {
+    _id: ID!
+    skill: Skill
     rating: String
+  }
+
+  type Skill {
+    _id: ID!
+    label: String
+    userId: [User]
+  }
+
+  type Role {
+    _id: ID!
+    label: String
+    level: Int
+    userId: [User]
+  }
+
+  type Classroom {
+    _id: ID!
+    label: String
+    userId: [User]
+  }
+
+  input ClassroomInput {
+    label: String
+  }
+
+  input SigninUserInput {
+    email: String!
+    password: String!
+  }
+
+  input SignupUserInput {
+    firstname: String
+    lastname: String
+    email: String
+    password: String
+  }
+
+  input SkillInput {
+    label: String!
   }
 
   input UserInput {
@@ -23,18 +66,25 @@ const typeDefs = gql`
     skills: [SkillInput]
     role: String
   }
-  input SkillInput {
-    skill: String
-    rating: String
+
+  input RoleInput {
+    label: String
+    level: Int
   }
 
   type Query {
     getUsers: [User]
     getUser(id: ID!): User
+    getSkill: [Skill]
+    getClassroom: [Classroom]
+    getRole: [Role]
   }
 
   type Mutation {
     addUser(data: UserInput): User!
+    addSkill(data: SkillInput): Skill!
+    addRole(data: RoleInput): Role!
+    addClassroom(data: ClassroomInput): Classroom
     updateUser(id: ID!, data: UserInput): User!
     deleteUser(id: ID): User
   }
