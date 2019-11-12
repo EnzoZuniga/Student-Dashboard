@@ -1,71 +1,47 @@
 import React from 'react';
 import './index.css';
 
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
-
-const GET_ALL_USERS = gql`
-{
-  getUsers {
-    _id
-    lastname
-    firstname
-    email
-    skills {
-      skill
-      rating
-    }
-    role
-    createdAt
-  }
-}
-`;
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import { Students } from '../Students';
 
 function App() {
-  const {data , loading, error} = useQuery(GET_ALL_USERS)
-
-  if(loading)
-  {
-    return <p>loading</p>
-  }
-
-  if(error)
-  {
-    return <p>error</p>
-  }
-  console.log(data)
   return (
-    <div className="App">
-      {data["getUsers"].map(({id,lastname,firstname,email,skills,role,createdAt})=>(
-      <div key={id}>
-        <p>
-          {id}
-        </p>
-        <p>
-          {lastname}
-        </p>
-        <p>
-          {firstname}
-        </p>
-        <p>
-          {email}
-        </p>
-        <ul>
-          {skills.map(({skill,rating})=>
-          <li>
-            {skill}:{rating}
-          </li>
-          )}
-        </ul>
-        <p>
-          {role}
-        </p>
-        <p>
-          {createdAt}
-        </p>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/students">Students</Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/about">
+            {/* <About /> */}
+          </Route>
+          <Route path="/students">
+            <Students />
+          </Route>
+          <Route path="/">
+            {/* <Home /> */}
+          </Route>
+        </Switch>
       </div>
-      ))}
-    </div>
+    </Router>
   );
 }
 

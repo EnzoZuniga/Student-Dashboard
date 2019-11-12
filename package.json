@@ -1,7 +1,11 @@
 {
   "dependencies": {
     "@types/jest": "^24.0.22",
+<<<<<<< HEAD
     "@types/react": "^16.9.11",
     "antd": "^3.25.1"
+=======
+    "@types/react": "^16.9.11"
+>>>>>>> Test-01
   }
 }
