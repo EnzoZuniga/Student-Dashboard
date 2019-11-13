@@ -71,9 +71,9 @@ exports.resolvers = {
         return new ApolloError(error.message, 404);
       }
     },
-    addUser: async (
+    signup: async (
       root,
-      { data: { lastname, firstname, email, skills, role } },
+      { data: { lastname, firstname, email, skills, role, password } },
       ctx
     ) => {
       try {

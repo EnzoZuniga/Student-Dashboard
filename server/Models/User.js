@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: false
     },
+    password: String,
     job: String,
     desciption: String,
     skills: [

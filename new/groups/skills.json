@@ -1,0 +1,16 @@
+{
+  "info": {
+    "name": "Skills",
+    "description": ""
+  },
+  "connection": "default",
+  "collectionName": "groups_rated_skills",
+  "attributes": {
+    "skill": {
+      "model": "skill"
+    },
+    "rate": {
+      "model": "rate"
+    }
+  }
+}

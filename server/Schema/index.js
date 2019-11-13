@@ -6,6 +6,7 @@ const typeDefs = gql`
     lastname: String
     firstname: String
     email: String
+    password: String
     skills: [RatedSkill]
     role: Role
     classroom: Classroom
@@ -36,7 +37,10 @@ const typeDefs = gql`
   type Classroom {
     _id: ID!
     label: String
-    userId: [User]
+  }
+
+  type Token {
+    token: String
   }
 
   input ClassroomInput {
@@ -48,23 +52,20 @@ const typeDefs = gql`
     password: String!
   }
 
-  input SignupUserInput {
-    firstname: String
-    lastname: String
-    email: String
-    password: String
-  }
-
   input SkillInput {
     label: String!
   }
 
-  input UserInput {
+  input SignupUserInput {
     lastname: String
     firstname: String
     email: String
-    skills: [SkillInput]
-    role: String
+    password: String
+    skills: [ID]
+    role: ID
+    classroom: ID
+    job: String
+    description: String
   }
 
   input RoleInput {
@@ -81,7 +82,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(data: UserInput): User!
+    signup(data: SignupUserInput): User!
     addSkill(data: SkillInput): Skill!
     addRole(data: RoleInput): Role!
     addClassroom(data: ClassroomInput): Classroom
