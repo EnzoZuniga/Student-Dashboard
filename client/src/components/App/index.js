@@ -1,5 +1,6 @@
 import React from 'react';
 import './index.css';
+import 'antd/dist/antd.css';
 
 import {
   BrowserRouter as Router,
@@ -8,12 +9,13 @@ import {
   Link
 } from "react-router-dom";
 import { Students } from '../Students';
+import Login from '../Login';
 
 function App() {
   return (
     <Router>
       <div>
-        <nav>
+        {/* <nav>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -25,13 +27,13 @@ function App() {
               <Link to="/students">Students</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/about">
-            {/* <About /> */}
+          <Route path="/login">
+            <Login/>
           </Route>
           <Route path="/students">
             <Students />
