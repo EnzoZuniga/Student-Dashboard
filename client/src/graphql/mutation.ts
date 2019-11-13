@@ -10,24 +10,12 @@ mutation REGISTER(
     $company:String
     $skills:[{skill:ID, rate:ID},{skill:ID, rate:ID},{skill:ID, rate:ID},{skill:ID, rate:ID},{skill:ID, rate:ID}]
 ){
-    register(username:$username, email:$email,password:$password, job:$job, description:$description, compagny: $compagny, Skills:$skill ){
+    register(input:{username:$username, email:$email,password:$password, job:$job, description:$description, compagny: $compagny, Skills:$skill} ){
     jwt
     user {
+        id
       username
       email
-      description
-      Job
-      Company
-      Skills {
-        skill {
-          name
-        }
-        rate {
-          label
-          level
-        }
-      }
-      
     }
   }
 }
