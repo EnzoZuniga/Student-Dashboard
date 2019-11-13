@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/ratedskills",
+      "handler": "Ratedskill.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ratedskills/count",
+      "handler": "Ratedskill.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ratedskills/:id",
+      "handler": "Ratedskill.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/ratedskills",
+      "handler": "Ratedskill.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/ratedskills/:id",
+      "handler": "Ratedskill.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/ratedskills/:id",
+      "handler": "Ratedskill.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

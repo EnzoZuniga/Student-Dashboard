@@ -16,6 +16,7 @@
     },
     "users": {
       "collection": "user",
+      "via": "classrooms",
       "plugin": "users-permissions"
     }
   }

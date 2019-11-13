@@ -56,11 +56,6 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "Skills": {
-      "group": "skills",
-      "repeatable": true,
-      "type": "group"
-    },
     "Job": {
       "type": "string"
     },
@@ -71,6 +66,14 @@
       "model": "file",
       "via": "related",
       "plugin": "upload"
+    },
+    "ratedskills": {
+      "collection": "ratedskill",
+      "via": "user"
+    },
+    "classrooms": {
+      "collection": "classroom",
+      "via": "users"
     }
   }
 }

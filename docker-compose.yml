@@ -1,19 +1,65 @@
 version: '3.7'
 
 services:
+  database:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: challenge_react
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      - database
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      PMA_HOST: database
+      PMA_USER: root
+      PMA_PASSWORD: root
+    restart: always
+    depends_on:
+      - database
+    ports:
+      - 8080:80
+    networks:
+      - database
+
   back:
     image: "node"
     working_dir: /app
-    command: bash -c "yarn && yarn dev"
+    command: bash -c "yarn && yarn develop"
+    restart: always
+    depends_on:
+      - database
     ports:
-    - "4000:4000"
+      - "4000:1337"
     volumes:
-      - ./server:/app 
+      - ./headlesscms:/app
+    environment:
+      DATABASE_HOST: database
+      DATABASE_PORT: 3306
+      DATABASE_NAME: challenge_react
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: root
+    networks:
+      - database
+      - front
+    
   front:
     image: "node"
     working_dir: /app
     command: bash -c "yarn && yarn start"
     ports:
-    - "3000:3000"
+      - "3000:3000"
+    depends_on:
+      - back
     volumes:
       - ./client:/app 
+    networks:
+      - front
+
+networks:
+  database:
+  front:
