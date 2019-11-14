@@ -1,8 +1,8 @@
 {
   "connection": "default",
-  "collectionName": "rates",
+  "collectionName": "skills",
   "info": {
-    "name": "rate",
+    "name": "skill",
     "description": ""
   },
   "options": {
@@ -14,15 +14,12 @@
     "comment": ""
   },
   "attributes": {
-    "label": {
+    "name": {
       "type": "string"
     },
-    "level": {
-      "type": "integer"
-    },
-    "skills": {
-      "collection": "skill",
-      "via": "rate"
+    "ratedskills": {
+      "collection": "ratedskill",
+      "via": "skill"
     }
   }
 }

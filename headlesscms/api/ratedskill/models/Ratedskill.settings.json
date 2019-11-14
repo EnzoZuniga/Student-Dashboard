@@ -1,0 +1,29 @@
+{
+  "connection": "default",
+  "collectionName": "ratedskills",
+  "info": {
+    "name": "ratedskill",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": [
+      "created_at",
+      "updated_at"
+    ],
+    "comment": ""
+  },
+  "attributes": {
+    "rate": {
+      "model": "rate"
+    },
+    "user": {
+      "model": "user",
+      "plugin": "users-permissions"
+    },
+    "skill": {
+      "model": "skill",
+      "via": "ratedskills"
+    }
+  }
+}
