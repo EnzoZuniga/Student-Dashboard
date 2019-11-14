@@ -3,6 +3,7 @@ import { Form, Icon, Input, Button } from "antd";
 import { ReactComponent as LogoHetic } from "../../images/logo-hetic.svg";
 import { LOGIN } from "../../graphql/mutation";
 import { useMutation } from "@apollo/react-hooks";
+import { Link } from "react-router-dom";
 import "./index.scss";
 
 interface loginForm {
@@ -71,7 +72,7 @@ const Login: React.FC = () => {
           </Form.Item>
           <p>
             Vous n'avez pas de compte HETIC ?{" "}
-            <a href="/signUp">Inscrivez-vous !</a>
+            <Link to="/signUp">Inscrivez-vous !</Link>
           </p>
         </Form>
       </div>
