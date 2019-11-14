@@ -8,28 +8,10 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import Home from "../Students";
+import Students from "../Students";
 import Login from "../Login";
 import SignUp from "../SignUp";
 import { getToken } from "../../utils/auth";
-
-const PrivateRoute = ({ component: Component, ...props }: any) => (
-  <Route
-    {...props}
-    render={props =>
-      getToken() !== null ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: "/login",
-            state: { from: props.location }
-          }}
-        />
-      )
-    }
-  />
-);
 
 function App() {
   return (
@@ -37,10 +19,9 @@ function App() {
       <div>
         <Switch>
           <Route path="/login" component={Login} />
-
           <Route path="/signUp" component={SignUp} />
-
-          <PrivateRoute path="/" component={Home} />
+          <Route path="/" component={Students} />
+          <Route path="/user/:userId" render={() => <div>uuser</div>} />
         </Switch>
       </div>
     </Router>

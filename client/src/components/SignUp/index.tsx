@@ -4,6 +4,8 @@ import { Form, Input, Button, Select } from "antd";
 import LoginBackground from "../LoginBackground/index";
 import { Link } from "react-router-dom";
 import "./index.scss";
+import FirstForm from "./firstForm";
+import SecondForm from "./secondForm";
 
 const { Option } = Select;
 
@@ -17,6 +19,7 @@ const initialState = {
 
 const SignUp: FC = () => {
   const [values, setValues] = useState({ ...initialState });
+  const [checkboxValue, setCheckboxValue] = useState({});
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(values);
@@ -27,6 +30,15 @@ const SignUp: FC = () => {
 
     setValues({
       ...values,
+      [target.name]: target.value
+    });
+  }
+
+  function handleCheckboxesChange(e: React.FormEvent<HTMLInputElement>) {
+    const target = e.target as HTMLInputElement;
+
+    setCheckboxValue({
+      ...checkboxValue,
       [target.name]: target.value
     });
   }
@@ -45,55 +57,16 @@ const SignUp: FC = () => {
           <h1>Créer un compte</h1>
           <h3>Informations personnelles</h3>
           <Form onSubmit={handleSubmit}>
-            <Form.Item>
-              <label>Nom</label>
-              <Input
-                placeholder="Entrez votre nom"
-                size="large"
-                name="lastname"
-                onChange={handleChange}
-              />
-            </Form.Item>
-            <Form.Item>
-              <label>Prénom</label>
-              <Input
-                placeholder="Entrez votre prénom"
-                size="large"
-                name="firstname"
-                onChange={handleChange}
-              />
-            </Form.Item>
-            <Form.Item>
-              <label htmlFor="">Vous êtes</label>
-              <Select
-                defaultValue="student"
-                style={{ width: 120 }}
-                onChange={handleSeletChange}
-              >
-                <Option value="student">Élève</Option>
-                <Option value="teacher">Professeur</Option>
-              </Select>
-            </Form.Item>
-
-            <Form.Item>
-              <label>Adresse email</label>
-              <Input
-                placeholder="exemple@hetic.net"
-                size="large"
-                name="email"
-                onChange={handleChange}
-              />
-            </Form.Item>
-            <Form.Item>
-              <label>Mot de passe</label>
-              <Input.Password
-                placeholder="Entrez votre mot de passe"
-                size="large"
-                name="password"
-                onChange={handleChange}
-              />
-            </Form.Item>
-
+            {/* <FirstForm
+              handleChange={handleChange}
+              handleSeletChange={handleSeletChange}
+            /> */}
+            <SecondForm
+              handleSelectChange={handleSeletChange}
+              handleChange={handleChange}
+              handleCheckboxesChange={handleCheckboxesChange}
+              checkboxValue={checkboxValue}
+            />
             <Form.Item>
               <Button
                 type="default"

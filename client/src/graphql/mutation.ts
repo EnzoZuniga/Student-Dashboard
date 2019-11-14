@@ -1,5 +1,4 @@
 import gql from "graphql-tag";
-
 export const REGISTER = gql`
   mutation REGISTER(
     $username: String!
@@ -33,6 +32,10 @@ export const LOGIN = gql`
       jwt
       user {
         username
+        email
+        id
+        job
+        description
       }
     }
   }
