@@ -1,68 +1,121 @@
-import React, { FC } from "react";
-import { Form, Icon, Input, Button } from 'antd';
-import { ReactComponent as LogoHetic } from "../../images/logo-hetic.svg"
+import React, { FC, useState } from "react";
+import { Form, Input, Button, Select } from "antd";
+
+import LoginBackground from "../LoginBackground/index";
+import { Link } from "react-router-dom";
 import "./index.scss";
 
+const { Option } = Select;
+
+const initialState = {
+  lastname: "",
+  firstname: "",
+  email: "",
+  password: "",
+  role: "student"
+};
+
 const SignUp: FC = () => {
+  const [values, setValues] = useState({ ...initialState });
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(values);
+  };
 
-    const onHandleClick = () => {
+  function handleChange(e: React.FormEvent<HTMLInputElement>): void {
+    const target = e.target as HTMLInputElement;
 
-    }
+    setValues({
+      ...values,
+      [target.name]: target.value
+    });
+  }
 
-    return (
-        <div className="signUpContainer">
-            <div className="logoHetic">
-                <LogoHetic />
-            </div>
-            <div className="inscription">
-                <h1>Créer un compte</h1>
-                <h3>Créer votre espace privé HETIC</h3>
-                <Form onSubmit={onHandleClick}>
-                    <Form.Item >
-                        <label>Nom</label>
-                        <Input
-                            placeholder="Entrez votre nom"
-                            size="large"
-                        />
-                    </Form.Item>
-                    <Form.Item >
-                        <label>Prénom</label>
-                        <Input
-                            placeholder="Entrez votre prénom"
-                            size="large"
-                        />
-                    </Form.Item>
-                    <Form.Item >
-                        <label>Adresse email</label>
-                        <Input
-                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                            placeholder="exemple@hetic.net"
-                            size="large"
-                        />
-                    </Form.Item>
-                    <Form.Item>
-                        <label>Mot de passe</label>
-                        <Input.Password
-                            placeholder="Entrez votre mot de passe"
-                            size="large"
-                            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                        />
-                        <h3>Votre mot de passe doit contenir au moin une majuscule et un chiffre.</h3>
-                    </Form.Item>
-                    <Form.Item>
-                        <Button
-                            type="danger"
-                            htmlType="submit"
-                            size="large"
-                            className="login-form-button">
-                            S'inscrire
-                        </Button>
-                    </Form.Item>
-                    <p>Vous avez un compte HETIC ? <a href="/login">Connectez-vous !</a></p>
-                </Form>
-            </div>
+  function handleSeletChange(role: string) {
+    setValues({
+      ...values,
+      role
+    });
+  }
+
+  return (
+    <div className="signUpContainer">
+      <div className="login__left">
+        <div className="inscription">
+          <h1>Créer un compte</h1>
+          <h3>Informations personnelles</h3>
+          <Form onSubmit={handleSubmit}>
+            <Form.Item>
+              <label>Nom</label>
+              <Input
+                placeholder="Entrez votre nom"
+                size="large"
+                name="lastname"
+                onChange={handleChange}
+              />
+            </Form.Item>
+            <Form.Item>
+              <label>Prénom</label>
+              <Input
+                placeholder="Entrez votre prénom"
+                size="large"
+                name="firstname"
+                onChange={handleChange}
+              />
+            </Form.Item>
+            <Form.Item>
+              <label htmlFor="">Vous êtes</label>
+              <Select
+                defaultValue="student"
+                style={{ width: 120 }}
+                onChange={handleSeletChange}
+              >
+                <Option value="student">Élève</Option>
+                <Option value="teacher">Professeur</Option>
+              </Select>
+            </Form.Item>
+
+            <Form.Item>
+              <label>Adresse email</label>
+              <Input
+                placeholder="exemple@hetic.net"
+                size="large"
+                name="email"
+                onChange={handleChange}
+              />
+            </Form.Item>
+            <Form.Item>
+              <label>Mot de passe</label>
+              <Input.Password
+                placeholder="Entrez votre mot de passe"
+                size="large"
+                name="password"
+                onChange={handleChange}
+              />
+            </Form.Item>
+
+            <Form.Item>
+              <Button
+                type="default"
+                htmlType="submit"
+                size="large"
+                className="login-form-button"
+              >
+                S'inscrire
+              </Button>
+            </Form.Item>
+            <p>
+              Vous avez un compte HETIC ?{" "}
+              <Link to="/login">Connectez-vous !</Link>
+            </p>
+          </Form>
         </div>
-    )
-}
+      </div>
+      <div className="login__right">
+        <LoginBackground />
+      </div>
+    </div>
+  );
+};
 
 export default SignUp;

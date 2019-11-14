@@ -1,20 +1,18 @@
 .loginContainer {
   width: 100%;
-  .logoHetic {
-    display: flex;
-    justify-content: flex-end;
-    margin: 72px 112px;
-  }
+  height: 100vh;
+  display: flex;
+
   .connection {
     width: 400px;
-    margin-left: 112px;
-    padding-top: 5%;
+
     h1 {
       font-size: 34px;
       font-weight: bold;
       text-transform: none;
       line-height: normal;
       margin-bottom: 0;
+      text-align: center;
     }
     h3 {
       width: 280px;
@@ -23,6 +21,7 @@
       font-size: 15px;
       font-weight: normal;
       color: #868686;
+      text-align: center;
     }
 
     label {
@@ -30,11 +29,21 @@
       font-weight: bold;
       color: black;
     }
+
     .login-form-button {
       width: 100%;
+      background-color: #ef5d36;
+      border-color: #ef5d36;
+      color: white;
+
+      &:hover {
+        background-color: white;
+        color: #ef5d36;
+      }
     }
+
     a {
-      color: #00ff97;
+      color: #ef5d36;
       font-weight: bold;
     }
   }

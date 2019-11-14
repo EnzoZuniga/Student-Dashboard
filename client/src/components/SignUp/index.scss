@@ -1,42 +1,45 @@
 .signUpContainer {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  .logoHetic {
-    display: flex;
-    justify-content: flex-end;
-    padding: 72px 112px;
-  }
+  display: flex;
+
   .inscription {
     width: 400px;
-    margin-left: 112px;
     h1 {
       font-size: 34px;
       font-weight: bold;
       text-transform: none;
       line-height: normal;
       margin-bottom: 0;
+      text-align: center;
     }
     h3 {
-      width: 280px;
-      height: 24px;
       font-size: 15px;
-      font-weight: normal;
-      color: #868686;
       margin-top: 5px;
-      line-height: normal;
+      text-align: center;
+      color: #45d492;
+      margin-bottom: 10%;
     }
-
     label {
       font-size: 15px;
       font-weight: bold;
-      color: black;
+      color: #222222;
     }
+
     .login-form-button {
       width: 100%;
+      background-color: #ef5d36;
+      border-color: #ef5d36;
+      color: white;
+
+      &:hover {
+        background-color: white;
+        color: #ef5d36;
+      }
     }
 
     a {
-      color: #00ff97;
+      color: #ef5d36;
       font-weight: bold;
     }
   }
