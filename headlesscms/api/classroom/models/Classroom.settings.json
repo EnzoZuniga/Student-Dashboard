@@ -1,0 +1,26 @@
+{
+  "connection": "default",
+  "collectionName": "classrooms",
+  "info": {
+    "name": "classroom",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": [
+      "created_at",
+      "updated_at"
+    ],
+    "comment": ""
+  },
+  "attributes": {
+    "class": {
+      "type": "string"
+    },
+    "users": {
+      "collection": "user",
+      "via": "classrooms",
+      "plugin": "users-permissions"
+    }
+  }
+}

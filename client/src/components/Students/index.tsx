@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
@@ -12,23 +12,8 @@ const { Sider, Header, Content } = Layout
 const { Search } = Input
 const { TabPane } = Tabs
 const { Option } = Select
+import { useQuery } from "@apollo/react-hooks";
 
-const GET_ALL_USERS = gql`
-{
-  getUsers {
-    _id
-    lastname
-    firstname
-    email
-    skills {
-      skill
-      rating
-    }
-    role
-    createdAt
-  }
-}
-`;
 
 
 export const StudentsOld: FC = () => {
@@ -180,3 +165,4 @@ export const Students: FC = () =>
             </Content>
         </Layout>
     </Layout>
+

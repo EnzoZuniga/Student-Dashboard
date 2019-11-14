@@ -1,0 +1,25 @@
+{
+  "connection": "default",
+  "collectionName": "skills",
+  "info": {
+    "name": "skill",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": [
+      "created_at",
+      "updated_at"
+    ],
+    "comment": ""
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "ratedskills": {
+      "collection": "ratedskill",
+      "via": "skill"
+    }
+  }
+}
