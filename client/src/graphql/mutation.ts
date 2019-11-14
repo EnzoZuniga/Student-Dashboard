@@ -1,24 +1,30 @@
 import gql from "graphql-tag";
 
 export const REGISTER = gql`
-mutation REGISTER(
-    $username:String!
-    $email:String!
-    $password:String!
-    $job:String
-    $description:String
-    $company:String
-    $skills:[{skill:ID, rate:ID},{skill:ID, rate:ID},{skill:ID, rate:ID},{skill:ID, rate:ID},{skill:ID, rate:ID}]
-){
-    register(input:{username:$username, email:$email,password:$password, job:$job, description:$description, compagny: $compagny, Skills:$skill} ){
-    jwt
-    user {
+  mutation REGISTER(
+    $username: String!
+    $email: String!
+    $password: String!
+    $job: String
+    $classroom: ID!
+  ) {
+    register(
+      input: {
+        username: $username
+        email: $email
+        password: $password
+        job: $job
+        classroom: $classroom
+      }
+    ) {
+      jwt
+      user {
         id
-      username
-      email
+        username
+        email
+      }
     }
   }
-}
 `;
 
 export const LOGIN = gql`

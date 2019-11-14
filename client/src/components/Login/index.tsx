@@ -17,7 +17,7 @@ const initialState = {
 
 const Login: React.FC = () => {
   const [value, setvalue] = useState<loginForm>({ ...initialState });
-  const [login, { data }] = useMutation(LOGIN);
+  const [login] = useMutation(LOGIN);
 
   async function handleSubmit(
     e: React.FormEvent<HTMLFormElement>
@@ -25,9 +25,8 @@ const Login: React.FC = () => {
     if (!value.identifier || !value.password) return;
     e.preventDefault();
     console.log(value);
-    const user = await login({ variables: { ...value } });
-    console.log(user);
-    localStorage.setItem("token", user.data.login.jwt);
+    const { data } = await login({ variables: { ...value } });
+    localStorage.setItem("token", data.login.jwt);
   }
   return (
     <div className="loginContainer">
