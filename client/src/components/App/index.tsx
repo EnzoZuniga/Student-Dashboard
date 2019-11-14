@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import { Students } from '../Students';
 import Login from '../Login';
+import SignUp from "../SignUp"
+import Customers from '../Customers';
 
 function App() {
   return (
@@ -37,6 +39,12 @@ function App() {
           </Route>
           <Route path="/students">
             <Students />
+          </Route>
+          <Route path="/signUp">
+            <SignUp/>
+          </Route>
+          <Route path="/customers">
+            <Customers/>
           </Route>
           <Route path="/">
             {/* <Home /> */}
