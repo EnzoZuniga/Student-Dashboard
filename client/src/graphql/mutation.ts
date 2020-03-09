@@ -4,16 +4,18 @@ export const REGISTER = gql`
     $username: String!
     $email: String!
     $password: String!
-    $job: String
-    $classroom: ID!
+    $Job: String
+    $classrooms: [ID]!
+    $role: ID
   ) {
     register(
       input: {
         username: $username
         email: $email
         password: $password
-        job: $job
-        classroom: $classroom
+        Job: $Job
+        classrooms: $classrooms
+        role: $role
       }
     ) {
       jwt
@@ -21,6 +23,10 @@ export const REGISTER = gql`
         id
         username
         email
+        Job
+        role {
+          name
+        }
       }
     }
   }
@@ -34,7 +40,7 @@ export const LOGIN = gql`
         username
         email
         id
-        job
+        Job
         description
       }
     }

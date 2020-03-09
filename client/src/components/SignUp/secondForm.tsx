@@ -5,12 +5,7 @@ import { CLASSROOMS } from "../../graphql/query";
 import Checkboxes from "./checkboxes";
 const { Option } = Select;
 
-export default function SecondForm({
-  handleSeletChange,
-  handleChange,
-  handleCheckboxesChange,
-  checkboxValue
-}: any) {
+export default function SecondForm({ handleSeletChange, handleChange }: any) {
   const { error, data, loading } = useQuery(CLASSROOMS);
   if (error) return <p>error</p>;
   if (loading) return <p>loading...</p>;
@@ -39,11 +34,16 @@ export default function SecondForm({
           onChange={handleChange}
         />
       </Form.Item>
+
       <Form.Item>
-        <Checkboxes
-          handleCheckboxesChange={handleCheckboxesChange}
-          checkboxValue={checkboxValue}
-        />
+        <Button
+          type="default"
+          htmlType="submit"
+          size="large"
+          className="login-form-button"
+        >
+          S'inscrire
+        </Button>
       </Form.Item>
     </div>
   );

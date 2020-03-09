@@ -18,6 +18,7 @@ export default function Checkboxes({
   console.log(rateData);
 
   const dataRate = rateData.rates.map((r: any) => ({
+    id: r.id,
     label: r.label,
     value: r.level
   }));
@@ -30,8 +31,8 @@ export default function Checkboxes({
           <Radio.Group
             options={dataRate}
             onChange={handleCheckboxesChange}
-            value={checkboxValue[s.name]}
-            name={s.name}
+            value={checkboxValue[s.id]}
+            name={s.id}
           />
         </div>
       ))}

@@ -7,6 +7,7 @@ import * as serviceWorker from "./serviceWorker";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { getToken } from "./utils/auth";
+import ContextProvider from "./context";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -29,7 +30,9 @@ const client = new ApolloClient({
 });
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />
+    <ContextProvider>
+      <App />
+    </ContextProvider>
   </ApolloProvider>,
   document.getElementById("root")
 );

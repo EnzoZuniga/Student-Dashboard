@@ -2,7 +2,11 @@ import React from "react";
 import { Form, Input, Select, Button } from "antd";
 const { Option } = Select;
 
-export default function FirstForm({ handleChange, handleSeletChange }: any) {
+export default function FirstForm({
+  handleChange,
+  handleSeletChange,
+  setIsRegisterSuite
+}: any) {
   return (
     <>
       <Form.Item>
@@ -24,7 +28,7 @@ export default function FirstForm({ handleChange, handleSeletChange }: any) {
         />
       </Form.Item>
       <Form.Item>
-        <label htmlFor="">Vous êtes</label>
+        <label style={{ marginRight: "5%" }}>Vous êtes</label>
         <Select
           defaultValue="student"
           style={{ width: 120 }}
@@ -56,9 +60,10 @@ export default function FirstForm({ handleChange, handleSeletChange }: any) {
       <Form.Item>
         <Button
           type="default"
-          htmlType="submit"
+          htmlType="button"
           size="large"
           className="login-form-button"
+          onClick={() => setIsRegisterSuite(true)}
         >
           Suivant
         </Button>

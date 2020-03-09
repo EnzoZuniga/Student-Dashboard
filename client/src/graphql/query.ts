@@ -39,6 +39,8 @@ export const USERS = gql`
     users {
       username
       email
+      created_at
+      Job
       role {
         name
       }

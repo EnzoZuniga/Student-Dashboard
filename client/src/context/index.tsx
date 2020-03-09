@@ -1,15 +1,16 @@
-import React, { createContext, useContext, useReducer } from "react";
-import reducer from "./reducer";
+import React, { createContext, useContext, useReducer, useState } from "react";
 
-const AuthContext = createContext<{ currentUser: any }>({
-  currentUser: null
-});
+export const AuthContext = createContext({});
 
 function ContextProvider(props: any): JSX.Element {
-  const initialState = useContext(AuthContext);
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  function getCurrentUser(user: any) {
+    setCurrentUser(user);
+  }
+
   return (
-    <AuthContext.Provider value={{ state, dispatch }}>
+    <AuthContext.Provider value={{ currentUser, getCurrentUser }}>
       {props.children}
     </AuthContext.Provider>
   );

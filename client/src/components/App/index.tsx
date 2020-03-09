@@ -13,6 +13,24 @@ import Login from "../Login";
 import SignUp from "../SignUp";
 import { getToken } from "../../utils/auth";
 
+const PrivateRoute = ({ component: Component, ...rest }: any) => (
+  <Route
+    {...rest}
+    render={props =>
+      getToken() !== null ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: "/signin",
+            state: { from: props.location }
+          }}
+        />
+      )
+    }
+  />
+);
+
 function App() {
   return (
     <Router>

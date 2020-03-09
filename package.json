@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "strapi-sdk-javascript": "^0.3.3"
+  }
+}

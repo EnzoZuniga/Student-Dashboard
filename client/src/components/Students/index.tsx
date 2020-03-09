@@ -15,9 +15,9 @@ import {
   Dropdown
 } from "antd";
 import { ReactComponent as LogoHetic } from "../../images/logo-hetic.svg";
-import { getToken } from "../../utils/auth";
+import { getToken, clearToken } from "../../utils/auth";
 import { useHistory, Link } from "react-router-dom";
-import { USERS } from "../../graphql/query";
+import { USERS, ME } from "../../graphql/query";
 
 const { Sider, Header, Content } = Layout;
 const { Search } = Input;
@@ -50,28 +50,32 @@ const columns = [
 ];
 
 export default function Students(): JSX.Element {
-  const { loading, error, data } = useQuery(USERS);
+  const { loading, error, data, refetch } = useQuery(USERS);
+  const { loading: meLoading, error: meError, data: me } = useQuery(ME);
+  const history = useHistory();
+  if (loading || meLoading) return <p>loading...</p>;
+  if (error || meError) return <p>error...</p>;
 
-  if (loading) return <p>loading...</p>;
-  if (error) return <p>error...</p>;
+  console.log(me);
 
-  console.log(data);
+  function Signout() {
+    clearToken();
+    history.push("/login");
+  }
 
   const mockData = data.users
     .map((user: any) => ({
       _id: user.id,
       user: { id: user.id, username: user.username },
       email: user.email,
-      job: user.job,
+      job: user.Job,
       createdAt: user.created_at
     }))
     .map((s: any) => ({ ...s, key: s.id }));
 
-  //   useEffect(() => {
-  //     if (getToken() === null) {
-  //       history.push("/login");
-  //     }
-  //   }, []);
+  // useEffect(() => {
+  //   refetch();
+  // }, []);
 
   return (
     <Layout style={{ height: "100vh" }}>
@@ -99,12 +103,13 @@ export default function Students(): JSX.Element {
         <Content>
           <PageHeader
             title="Étudiants"
+            subTitle={`Bonjour, ${me.me.username} !`}
             extra={[
               <Select defaultValue="web3p2020" style={{ width: 160 }}>
                 <Option value="web3p2020">WEB 3 P2020</Option>
               </Select>,
-              <Button key="1" type="primary">
-                Ajouter un élève
+              <Button key="1" type="primary" onClick={Signout}>
+                Déconnexion
               </Button>
             ]}
           ></PageHeader>
