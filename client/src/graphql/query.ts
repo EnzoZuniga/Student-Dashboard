@@ -18,7 +18,7 @@ export const USER = gql`
       company
       Skills {
         id
-        skill {
+        ratedskills {
           name
         }
         rate {
@@ -31,6 +31,64 @@ export const USER = gql`
       role {
         name
       }
+    }
+  }
+`;
+export const USERS = gql`
+  query USERS {
+    users {
+      username
+      email
+      created_at
+      Job
+      role {
+        name
+      }
+      description
+      avatar {
+        url
+      }
+      company
+      id
+      classrooms {
+        class
+      }
+      ratedskills {
+        rate {
+          label
+          level
+        }
+        skill {
+          name
+        }
+      }
+    }
+  }
+`;
+
+export const CLASSROOMS = gql`
+  query CLASSROOMS {
+    classrooms {
+      class
+      id
+    }
+  }
+`;
+
+export const SKILLS = gql`
+  query SKILLS {
+    skills {
+      id
+      name
+    }
+  }
+`;
+export const RATES = gql`
+  query RATES {
+    rates {
+      id
+      label
+      level
     }
   }
 `;

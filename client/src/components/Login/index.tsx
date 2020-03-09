@@ -2,9 +2,11 @@ import React, { FC, useState } from "react";
 import { Form, Icon, Input, Button } from "antd";
 import { LOGIN } from "../../graphql/mutation";
 import { useMutation } from "@apollo/react-hooks";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import LoginBackground from "../LoginBackground/index";
+
 import "./index.scss";
+import { setToken } from "../../utils/auth";
 
 interface loginForm {
   identifier: string;
@@ -16,19 +18,19 @@ const initialState = {
   password: ""
 };
 
-const Login: React.FC = (props: any) => {
+const Login: FC = (props: any) => {
   const [value, setvalue] = useState<loginForm>({ ...initialState });
   const [login] = useMutation(LOGIN);
+  const history = useHistory();
 
   async function handleSubmit(
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> {
     if (!value.identifier || !value.password) return;
     e.preventDefault();
-    console.log(value);
     const { data } = await login({ variables: { ...value } });
-    localStorage.setItem("token", data.login.jwt);
-    props.history.push("/");
+    setToken(data.login.jwt);
+    history.push("/");
   }
   return (
     <div className="loginContainer">
