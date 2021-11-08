@@ -7,7 +7,7 @@
     "dev": "nodemon index.js"
   },
   "dependencies": {
-    "apollo-server": "^2.9.7",
+    "apollo-server": "^2.25.3",
     "mongoose": "^5.7.7",
     "nodemon": "^1.19.4"
   }
